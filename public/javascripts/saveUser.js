@@ -1,3 +1,5 @@
+const { token } = require("morgan");
+
 var newUser=require("../../models/user_signup").user
 async function findUser(req,res){
     const specialUser=new newUser({
@@ -8,7 +10,6 @@ async function findUser(req,res){
         image:req.body.image,
       
     });
-    // let token=jwt.sign({data:newUser},"rahavard")
     if(await newUser.findOne({name:specialUser.name })){
         res.send("this username exists,try another name")
     }
@@ -19,13 +20,12 @@ async function findUser(req,res){
         res.send("this email is in use,try again")
     }
     else{
-        await newUser.save(function(err,obj){
+        await specialUser.save(function(err,obj){
             if(err) console.log(err)
             else {
                 res.send("your information saved!")
             }
     })
     }
-    return token
 }
 module.exports={findUser}

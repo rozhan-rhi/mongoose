@@ -1,5 +1,4 @@
 var mongoose=require("mongoose");
-var otp=require("../public/javascripts/otpGenerate");
 const userSchema=new mongoose.Schema({
     name:{
         type:String,
@@ -23,10 +22,6 @@ const userSchema=new mongoose.Schema({
     },
     image:{
         type:String,
-    },
-    otp:{
-        type:String,
-        default:otp.otpCode
     },
     time:{
         type:String,

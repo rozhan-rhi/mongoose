@@ -10,15 +10,17 @@ var usersRouter = require('./routes/users');
 var loginRouter = require('./routes/login');
 var codeRouter = require('./routes/codeChecking');
 var signUpRouter = require('./routes/signUp');
-var userSignRouter=require("./models/user_signup");
 var factorRouter=require("./routes/createFactor");
 var showFactorRouter=require("./routes/showFactor");
+var login=require("./routes/codeChecking")
+
 var app = express();
 mongoose.connect("mongodb://127.0.0.1:27017/rozhan");
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+app.use("/login",login);
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
